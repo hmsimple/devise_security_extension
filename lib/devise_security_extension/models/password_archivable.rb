@@ -48,7 +48,7 @@ module Devise
             else
               self.old_passwords.create! :encrypted_password => self.encrypted_password_change.first
             end
-            self.old_passwords.reverse_order(:id).offset(self.class.password_archiving_count).destroy_all
+            self.old_passwords.reverse_order.offset(self.class.password_archiving_count).destroy_all
           else
             self.old_passwords.destroy_all
           end
