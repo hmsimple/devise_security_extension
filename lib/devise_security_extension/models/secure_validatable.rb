@@ -25,7 +25,7 @@ module Devise
           validates :email, :presence => true, :if => :email_required?
           validates :email, :uniqueness => true, :allow_blank => true, :if => :email_changed? # check uniq for email ever
           validates :email, :email => email_validation if email_validation # use rails_email_validator or similar
-          
+
           # validates password
           validates :password, :presence => true, :length => password_length, :format => password_regex, :confirmation => true, :if => :password_required?
 
@@ -43,7 +43,7 @@ module Devise
           dummy = self.class.new
           dummy.encrypted_password = self.encrypted_password_change.first
           dummy.password_salt = self.password_salt_change.first if self.respond_to? :password_salt_change and not self.password_salt_change.nil?
-          self.errors.add(:password, :equal_to_current_password) if dummy.valid_password?(self.password)
+          self.errors.add(:password, :equal_to_current_password) if dummy.valid_password?(self.password) rescue nil
         end
       end
 
