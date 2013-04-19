@@ -30,7 +30,7 @@ module Devise
           validates :password, :presence => true, :length => password_length, :format => password_regex, :confirmation => true, :if => :password_required?
 
           # don't allow use same password
-          validate :current_equal_password_validation
+          # validate :current_equal_password_validation
         end
       end
 
